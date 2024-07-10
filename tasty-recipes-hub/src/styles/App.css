@@ -1,93 +1,28 @@
-/* General Styles */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
 body, html {
-    height: 100%;
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
-    overflow: hidden; /* Prevent scrolling */
+    height: 100%;
+    overflow: hidden;
 }
 
-/* App Container */
-.app {
+main {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Ensure it takes full viewport height */
 }
 
-/* Container Styles */
-.container {
-    flex: 1;
-    padding: 2em;
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow-y: auto; /* Allow scrolling within the container if needed */
-}
-
-/* Navigation Styles */
-.navbar {
-    background-color: #333;
-    color: #fff;
-    padding: 1em;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navbar a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 1em;
-    padding: 0.5em 1em;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.navbar a:hover {
-    background-color: #555;
-    color: #ffdd57;
-    border-radius: 4px;
-}
-
-/* Footer Styles */
-.footer {
-    background-color: #333;
-    color: #fff;
-    padding: 1em;
+footer {
     text-align: center;
+    padding: 1em;
+    background-color: #333;
+    color: white;
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    flex-shrink: 0; /* Ensure the footer stays at the bottom */
-}
-
-/* Home Page Styles */
-.home {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    padding: 2em;
-    box-sizing: border-box;
-    overflow: auto; 
-}
-
-.home h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
-    color: #333;
-}
-
-.home p {
-    font-size: 1.2em;
-    color: #555;
-    max-width: 800px;
-    margin-bottom: 2em;
-}
-
-.home .highlight {
-    background-color: #ffdd57;
-    padding: 0.2em 0.4em;
-    border-radius: 4px;
-    color: #333;
-    font-weight: bold;
 }

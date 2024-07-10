@@ -1,14 +1,34 @@
-/* Home Page Styles */
-.home {
+.home-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url('../Images/Tło.jpg'); /* Przy założeniu, że masz takie tło */
+    background-size: cover;
+    background-position: center;
+}
+
+.home-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    color: white;
+    padding: 2em;
 }
 
-.home h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
-.home p {
-    font-size: 1.2em;
-    color: #555;
+.home-content h1 {
+    color: white;
 }

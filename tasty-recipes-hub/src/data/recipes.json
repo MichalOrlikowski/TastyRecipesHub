@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "name": "Spaghetti Bolognese",
+        "type": "obiad",
+        "cuisine": "wloska",
+        "ingredients": ["Spaghetti", "ground beef", "tomato sauce", "onions", "garlic", "olive oil", "salt", "pepper"],
+        "instructions": "1. Cook spaghetti according to package instructions. 2. In a separate pan, heat olive oil and sauté onions and garlic. 3. Add ground beef and cook until browned. 4. Add tomato sauce and simmer for 15 minutes. 5. Combine spaghetti and sauce, season with salt and pepper to taste.",
+        "image": "https://example.com/spaghetti.jpg"
+    }
+]

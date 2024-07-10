@@ -2,25 +2,16 @@ import React from 'react';
 import '../styles/Home.css';
 
 const Home = () => {
-  return (
-    <div className="home">
-      <h1>Welcome to Tasty Recipes Hub</h1>
-      <p>
-        Discover a world of delicious recipes at your fingertips. Whether you're looking for 
-        <span className="highlight">breakfast</span> ideas, 
-        <span className="highlight">lunch</span> options, 
-        <span className="highlight">dinner</span> meals, or 
-        <span className="highlight">snacks</span>, we've got you covered!
-      </p>
-      <p>
-        Explore cuisines from around the globe including 
-        <span className="highlight">Polish</span>, 
-        <span className="highlight">Asian</span>, 
-        <span className="highlight">Italian</span>, and 
-        <span className="highlight">Mediterranean</span> dishes.
-      </p>
-    </div>
-  );
+    return (
+        <div className="home-container">
+            <div className="home-content">
+                <h1>Welcome to Tasty Recipes Hub</h1>
+                <p>
+                    Discover the best recipes from around the world. Whether you're looking for breakfast, lunch, dinner, snacks, or high-protein meals, we've got you covered. Explore different cuisines and enjoy cooking with us!
+                </p>
+            </div>
+        </div>
+    );
 };
 
 export default Home;
