@@ -64,9 +64,6 @@ const AddRecipe = () => {
                     </form>
                 </div>
             </main>
-            <footer className="footer">
-                © 2024 TastyRecipesHub
-            </footer>
         </div>
     );
 };

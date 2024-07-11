@@ -6,6 +6,7 @@
     background-image: url('../Images/Tło.jpg'); /* Przy założeniu, że masz takie tło */
     background-size: cover;
     background-position: center;
+    overflow: hidden;
 }
 
 .home-content {
@@ -17,17 +18,9 @@
     text-align: center;
     color: white;
     padding: 2em;
+    overflow: hidden;
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1em 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
 
 .home-content h1 {
     color: white;

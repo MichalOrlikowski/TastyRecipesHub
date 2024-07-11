@@ -1,12 +1,12 @@
 /* Footer Styles */
 .footer {
+    display: flex;
     background-color: #333;
     color: white;
-    text-align: center;
+    justify-content: center;
     padding: 1em;
-    position: absolute;
     bottom: 0;
-    width: 100%;
+    width: auto;
     height: 60px; /* Ensure consistent height */
     line-height: 60px; /* Center text vertically */
 }

@@ -59,9 +59,6 @@ const Recipes = () => {
                     </li>
                 ))}
             </ul>
-            <footer className="footer">
-                &copy; 2024 TastyRecipesHub
-            </footer>
         </div>
     );
 };
