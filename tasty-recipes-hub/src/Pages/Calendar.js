@@ -3,6 +3,7 @@ import { format, addDays, startOfMonth, endOfMonth, startOfWeek, endOfWeek, isSa
 import '../styles/Calendar.css';
 import recipesData from '../data/recipes.json'; // Assuming recipes.json is in the data folder
 import { pl } from 'date-fns/locale';
+import Modal from '../components/Modal'; // Import Modal component
 
 const Calendar = () => {
     const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -180,12 +181,6 @@ const Calendar = () => {
         setFilteredRecipes([]);
     };
 
-    const handleCloseModal = (e) => {
-        if (e.target.className === 'details-modal') {
-            setShowDetails(false);
-        }
-    };
-
     return (
         <div className="calendar-container">
             <h1>Kalendarz</h1>
@@ -194,51 +189,22 @@ const Calendar = () => {
                 {renderDays()}
                 {renderCells()}
             </div>
-            {showDetails && (
-                <div className="details-modal" onClick={handleCloseModal}>
-                    <div className="details-content">
-                        <h2>Notatki na dzień {format(selectedDate, 'yyyy-MM-dd')}</h2>
-                        <ul>
-                            {notes[format(selectedDate, 'yyyy-MM-dd')] && notes[format(selectedDate, 'yyyy-MM-dd')].map((note, index) => (
-                                <li key={index}>
-                                    {note}
-                                    <button onClick={() => handleDeleteNote(format(selectedDate, 'yyyy-MM-dd'), index)}>Usuń</button>
-                                </li>
-                            ))}
-                        </ul>
-                        <input
-                            type="text"
-                            placeholder="Wyszukaj przepis"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                        />
-                        {filteredRecipes.length > 0 && (
-                            <ul className="recipe-list">
-                                {filteredRecipes.map((recipe, index) => (
-                                    <li key={recipe.id}
-                                        onClick={() => handleRecipeClick(recipe)}
-                                        className={highlightedIndex === index ? 'highlighted' : ''}
-                                    >
-                                        {recipe.name}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                        <input
-                            type="text"
-                            placeholder="Dodaj notatkę"
-                            value={customNote}
-                            onChange={(e) => setCustomNote(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                        />
-                        <div className="button-group">
-                            <button onClick={() => handleAddNote(customNote)}>Dodaj</button>
-                            <button onClick={() => setShowDetails(false)}>Zamknij</button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <Modal 
+                show={showDetails} 
+                onClose={() => setShowDetails(false)} 
+                notes={notes[format(selectedDate, 'yyyy-MM-dd')]}
+                selectedDate={format(selectedDate, 'yyyy-MM-dd')}
+                handleDeleteNote={(index) => handleDeleteNote(format(selectedDate, 'yyyy-MM-dd'), index)}
+                handleAddNote={() => handleAddNote(customNote)}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                filteredRecipes={filteredRecipes}
+                highlightedIndex={highlightedIndex}
+                handleKeyDown={handleKeyDown}
+                customNote={customNote}
+                setCustomNote={setCustomNote}
+                handleRecipeClick={handleRecipeClick}
+            />
         </div>
     );
 };
