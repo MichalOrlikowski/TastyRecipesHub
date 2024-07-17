@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { format, addDays, startOfMonth, endOfMonth, startOfWeek, endOfWeek, isSameMonth, isSameDay, addMonths, subMonths } from 'date-fns';
 import '../styles/Calendar.css';
-import recipesData from '../data/recipes.json'; // Assuming recipes.json is in the data folder
 import { pl } from 'date-fns/locale';
 import Modal from '../components/Modal'; // Import Modal component
+import recipesData from '../data/recipes.json'; // Import recipes from JSON file
 
 const Calendar = () => {
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [notes, setNotes] = useState(() => {
         const savedNotes = JSON.parse(localStorage.getItem('notes')) || {};
-        console.log("Wczytano notatki z localStorage:", savedNotes);
         return savedNotes;
     });
     const [searchTerm, setSearchTerm] = useState('');
@@ -18,15 +17,15 @@ const Calendar = () => {
     const [customNote, setCustomNote] = useState('');
     const [showDetails, setShowDetails] = useState(false);
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
+    const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
         localStorage.setItem('notes', JSON.stringify(notes));
-        console.log("Zapisano notatki do localStorage:", notes);
     }, [notes]);
 
     useEffect(() => {
         if (searchTerm.length >= 3) {
-            const results = recipesData.filter(recipe =>
+            const results = recipes.filter(recipe =>
                 recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
             setFilteredRecipes(results);
@@ -34,7 +33,13 @@ const Calendar = () => {
         } else {
             setFilteredRecipes([]);
         }
-    }, [searchTerm]);
+    }, [searchTerm, recipes]);
+
+    useEffect(() => {
+        const storedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
+        const combinedRecipes = [...recipesData, ...storedRecipes];
+        setRecipes(combinedRecipes);
+    }, []);
 
     const renderHeader = () => {
         const dateFormat = "MMMM yyyy";

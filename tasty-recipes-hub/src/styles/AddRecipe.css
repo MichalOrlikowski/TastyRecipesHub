@@ -1,81 +1,156 @@
-.container {
-    display: flex;
-    flex-direction: column;
-   
-}
-
-.header {
-    flex-shrink: 0;
-}
-
-.main-content {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-}
-
-
+/* Container and background */
 .add-recipe-container {
-    width: 20%; /* Zmniejsz szerokość formularza */
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 10px;
-    font-size: 20px; /* Zmniejsz rozmiar nagłówka */
-}
-
-form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #e6f7ff, #d9f7be); /* Gradient background */
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.form-group {
-    margin-bottom: 6px; /* Zmniejsz odstęp między grupami formularza */
-}
-
-.form-group label {
-    font-weight: bold;
-    margin-bottom: 4px;
-    display: block;
-    color: #555;
-    font-size: 12px; /* Zmniejsz rozmiar czcionki etykiet */
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
+/* Header styling */
+.add-recipe-header {
     width: 100%;
-    padding: 6spx; /* Zmniejsz padding */
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 12px; /* Zmniejsz rozmiar czcionki */
+    padding: 15px;
+    background: #007bff;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Add some space below the header */
 }
 
-.form-group textarea {
-    height: 40px;
+/* Main content area */
+.add-recipe-main-content {
+    width: 100%;
+    max-width: 700px; /* Adjusted for smaller width */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Ensure content doesn't overflow */
+    max-height: 80vh; /* Ensure it fits within the viewport */
+}
+
+/* Form container */
+.add-recipe-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Form heading */
+.add-recipe-form-container h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
+}
+
+/* Form styling */
+.add-recipe-form {
+    width: 100%;
+}
+
+/* Form group styling */
+.add-recipe-form-group {
+    margin-bottom: 10px; /* Reduced margin to fit better */
+}
+
+/* Label styling */
+.add-recipe-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Input and select styling */
+.add-recipe-form-group input[type="text"],
+.add-recipe-form-group select,
+.add-recipe-form-group textarea,
+.add-recipe-form-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.add-recipe-form-group input[type="text"]:focus,
+.add-recipe-form-group select:focus,
+.add-recipe-form-group textarea:focus,
+.add-recipe-form-group input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Textarea styling */
+.add-recipe-form-group textarea {
+    height: 60px; /* Reduced height to fit better */
     resize: vertical;
 }
 
-button {
-    background-color: #28a745;
-    color: white;
-    padding: 6px; /* Zmniejsz padding przycisku */
+/* Submit button styling */
+.add-recipe-form button {
+    display: inline-block;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-    margin-top: 8px;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    font-size: 1em;
 }
 
-button:hover {
-    background-color: #218838;
+
+.add-recipe-form button:hover {
+    background: linear-gradient(135deg, #0056b3, #003c82);
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .add-recipe-main-content {
+        padding: 10px;
+        max-height: 70vh; /* Ensure it fits within the viewport */
+    }
+    
+    .add-recipe-form-container h1 {
+        font-size: 1.5em;
+    }
+    
+    .add-recipe-form-group input[type="text"],
+    .add-recipe-form-group select,
+    .add-recipe-form-group textarea {
+        font-size: 0.9em;
+    }
+    
+    .add-recipe-form button {
+        font-size: 0.9em;
+    }
+}
+
+/* Removing the blue underline under navigation */
+nav {
+    border-bottom: none !important;
+}
+
+/* Adding effects */
+.add-recipe-form-group input[type="text"],
+.add-recipe-form-group select,
+.add-recipe-form-group textarea {
+    transition: all 0.3s ease-in-out;
+}
+
+.add-recipe-form-group input[type="text"]:hover,
+.add-recipe-form-group select:hover,
+.add-recipe-form-group textarea:hover {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }

@@ -31,18 +31,20 @@ const Modal = ({ show, onClose, notes, selectedDate, handleDeleteNote, handleAdd
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                {filteredRecipes.length > 0 && (
-                    <ul className="recipe-list">
-                        {filteredRecipes.map((recipe, index) => (
-                            <li key={recipe.id}
-                                onClick={() => handleRecipeClick(recipe)}
-                                className={highlightedIndex === index ? 'highlighted' : ''}
-                            >
-                                {recipe.name}
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                <div className="recipe-list-container">
+                    {filteredRecipes.length > 0 && (
+                        <ul className="recipe-list">
+                            {filteredRecipes.map((recipe, index) => (
+                                <li key={recipe.id}
+                                    onClick={() => handleRecipeClick(recipe)}
+                                    className={highlightedIndex === index ? 'highlighted' : ''}
+                                >
+                                    {recipe.name}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
                 <input
                     type="text"
                     placeholder="Dodaj notatkę"
