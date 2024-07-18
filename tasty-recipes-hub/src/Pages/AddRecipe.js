@@ -80,6 +80,7 @@ const AddRecipe = () => {
                                 <option value="azjatycka">Azjatycka</option>
                                 <option value="wloska">Włoska</option>
                                 <option value="srodziemnomorska">Śródziemnomorska</option>
+                                <option value="meksykańska">meksykańska</option>
                                 <option value="inne">Inne</option>
                             </select>
                         </div>
