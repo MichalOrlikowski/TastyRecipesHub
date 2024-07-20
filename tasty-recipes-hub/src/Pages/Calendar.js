@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { format, addDays, startOfMonth, endOfMonth, startOfWeek, endOfWeek, isSameMonth, isSameDay, addMonths, subMonths } from 'date-fns';
 import '../styles/Calendar.css';
 import { pl } from 'date-fns/locale';
-import Modal from '../components/Modal'; // Import Modal component
-import recipesData from '../data/recipes.json'; // Import recipes from JSON file
+import Modal from '../components/Modal';
+import recipesData from '../data/recipes.json';
 
 const Calendar = () => {
     const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -172,17 +172,17 @@ const Calendar = () => {
                 setHighlightedIndex(prevIndex => (prevIndex - 1 + filteredRecipes.length) % filteredRecipes.length);
             } else if (event.key === 'Enter') {
                 const selectedRecipe = filteredRecipes[highlightedIndex]?.name || searchTerm;
-                handleAddNote(`Przepis: ${selectedRecipe}`);
+                handleAddNote(`notes: ${selectedRecipe}`);
                 setFilteredRecipes([]);
             }
         } else if (event.key === 'Enter' && customNote) {
-            handleAddNote(customNote);
+            handleAddNote(`notatka: ${customNote}`);
         }
     };
 
     const handleRecipeClick = (recipe) => {
         setSearchTerm(recipe.name);
-        handleAddNote(`Przepis: ${recipe.name}`);
+        handleAddNote(`notes: ${recipe.name}`);
         setFilteredRecipes([]);
     };
 
@@ -200,7 +200,7 @@ const Calendar = () => {
                 notes={notes[format(selectedDate, 'yyyy-MM-dd')]}
                 selectedDate={format(selectedDate, 'yyyy-MM-dd')}
                 handleDeleteNote={(index) => handleDeleteNote(format(selectedDate, 'yyyy-MM-dd'), index)}
-                handleAddNote={() => handleAddNote(customNote)}
+                handleAddNote={() => handleAddNote(`notatka: ${customNote}`)}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
                 filteredRecipes={filteredRecipes}

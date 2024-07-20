@@ -1,14 +1,27 @@
+/* Ogólne style */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styl dla kontenera */
 .home-container {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-image: url('../Images/Tło.jpg'); /* Przy założeniu, że masz takie tło */
+    background-image: url('../Images/Tło.jpg'); /* Assuming you have this background */
     background-size: cover;
     background-position: center;
     overflow: hidden;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
+/* Styl dla głównej zawartości */
 .home-content {
     flex: 1;
     display: flex;
@@ -16,12 +29,125 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
     padding: 2em;
-    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5); /* Adding a semi-transparent background to make text readable */
+    border-radius: 15px;
+    margin: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
 }
 
-
 .home-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-in-out;
+    font-family: 'Roboto', sans-serif;
+}
+
+.home-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    animation: fadeIn 2s ease-in-out;
+    font-family: 'Roboto', sans-serif;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Sekcja dla notatek i dzisiejszych przepisów */
+.home-extra {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    overflow-y: auto;
+}
+
+.home-notes, .home-recipes {
+    width: 45%;
+    max-width: 45%;
+}
+
+.home-notes h2, .home-recipes h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.home-notes p, .home-recipes p {
+    font-size: 1em;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    animation: fadeIn 2.5s ease-in-out;
+    font-family: 'Roboto', sans-serif;
+}
+
+.home-notes ul, .home-recipes ul {
+    list-style: none;
+    padding: 0;
+    animation: fadeIn 2.5s ease-in-out;
+}
+
+.home-notes ul li, .home-recipes ul li {
+    background: rgba(0, 123, 255, 0.1);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.home-notes ul li:hover, .home-recipes ul li:hover {
+    background: rgba(0, 123, 255, 0.2);
+    transform: scale(1.02);
+}
+
+/* Styl dla scrollbar */
+.home-extra::-webkit-scrollbar {
+    width: 8px;
+}
+
+.home-extra::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.home-extra::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Animacja dla contentu */
+@keyframes slideIn {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.home-content, .home-extra {
+    animation: slideIn 1.5s ease-in-out;
+}
+
+/* Styl dla przycisków */
+.button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #007bff;
     color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
 }
