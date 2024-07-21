@@ -4,6 +4,7 @@ import Home from './Pages/Home';
 import Recipes from './Pages/Recipes';
 import AddRecipe from './Pages/AddRecipe';
 import Calendar from './Pages/Calendar';
+import Details from './Pages/Details';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import './styles/App.css';
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/recipes" element={<Recipes />} />
                     <Route path="/add-recipe" element={<AddRecipe />} />
                     <Route path="/calendar" element={<Calendar />} />
+                    <Route path="/details" element={<Details />} />
                 </Routes>
                 <Footer />
             </div>

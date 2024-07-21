@@ -7,6 +7,18 @@ const Recipes = () => {
     const [filterType, setFilterType] = useState('');
     const [filterCuisine, setFilterCuisine] = useState('');
     const [useLocalStorageOnly, setUseLocalStorageOnly] = useState(false);
+    const [myRecipes, setMyRecipes] = useState([]);
+    const [notification, setNotification] = useState('');
+
+    useEffect(() => {
+        const storedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
+        setMyRecipes(storedRecipes);
+        if (useLocalStorageOnly) {
+            setRecipes(storedRecipes);
+        } else {
+            setRecipes([...recipesData, ...storedRecipes]);
+        }
+    }, [useLocalStorageOnly]);
 
     const handleFilterTypeChange = (event) => {
         setFilterType(event.target.value);
@@ -20,14 +32,26 @@ const Recipes = () => {
         setUseLocalStorageOnly(!useLocalStorageOnly);
     };
 
-    useEffect(() => {
+    const handleAddToMyRecipes = (recipe) => {
         const storedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
-        if (useLocalStorageOnly) {
-            setRecipes(storedRecipes);
-        } else {
-            setRecipes([...recipesData, ...storedRecipes]);
+        if (!storedRecipes.find(r => r.id === recipe.id)) {
+            const updatedRecipes = [...storedRecipes, recipe];
+            localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
+            setMyRecipes(updatedRecipes);
+            setNotification('Przepis dodany do moich przepisów');
+            setTimeout(() => setNotification(''), 2000);
         }
-    }, [useLocalStorageOnly]);
+    };
+
+    const handleRemoveFromMyRecipes = (recipeId) => {
+        const storedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
+        const updatedRecipes = storedRecipes.filter(r => r.id !== recipeId);
+        localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
+        setMyRecipes(updatedRecipes);
+        setRecipes(useLocalStorageOnly ? updatedRecipes : [...recipesData, ...updatedRecipes]);
+        setNotification('Przepis usunięty z moich przepisów');
+        setTimeout(() => setNotification(''), 2000);
+    };
 
     const filteredRecipes = recipes.filter(recipe => {
         if (filterType && recipe.type !== filterType) return false;
@@ -58,7 +82,7 @@ const Recipes = () => {
                         <option value="azjatycka">Azjatycka</option>
                         <option value="wloska">Włoska</option>
                         <option value="srodziemnomorska">Śródziemnomorska</option>
-                        <option value="meksykańska">meksykańska</option>
+                        <option value="meksykańska">Meksykańska</option>
                         <option value="inne">Inne</option>
                     </select>
                 </label>
@@ -79,9 +103,15 @@ const Recipes = () => {
                         <p><strong>Białko:</strong> {recipe.protein}</p>
                         <p><strong>Tłuszcz:</strong> {recipe.fat}</p>
                         <p><strong>Węglowodany:</strong> {recipe.carbs}</p>
+                        {!myRecipes.find(r => r.id === recipe.id) ? (
+                            <button onClick={() => handleAddToMyRecipes(recipe)}>Dodaj do moich przepisów</button>
+                        ) : (
+                            <button onClick={() => handleRemoveFromMyRecipes(recipe.id)}>Usuń z moich przepisów</button>
+                        )}
                     </li>
                 ))}
             </ul>
+            {notification && <div className="notification">{notification}</div>}
         </div>
     );
 };
